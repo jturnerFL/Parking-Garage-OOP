@@ -1,0 +1,48 @@
+class parkingGarage():
+    
+    def __init__(self, tickets, parkingSpaces, currentTicket):
+        self.tickets = tickets
+        self.parkingSpaces = parkingSpaces
+        self.currentTicket = currentTicket
+        
+    def takeTicket(self):
+        print("Please take ticket and enter. *Payment when exiting.")
+        del self.tickets[0]
+        del self.parkingSpaces[0]
+        
+    def payForParking(self):
+        while self.currentTicket['paid'] == False:
+            payment = input("Please enter 'pay' to exit")
+            if payment.lower() == 'pay':
+                print("Ticket paid, you have 15 minutes to leave. ")
+                self.currentTicket['paid'] == True
+                break
+            else:
+                print("Please remit payment to exit. ")
+            
+    def leaveGarage(self):
+        self.currentTicket['paid'] == True
+        print("Thank you, have a nice day!")
+        self.tickets.append('ticket')
+        self.parkingSpaces.append('parking_space')
+        #self.payForParking()
+            
+
+
+parking_deck = parkingGarage(['ticket', 'ticket', 'ticket', 'ticket', 'ticket'] , ['ticket', 'ticket', 'ticket', 'ticket', 'ticket'], {'paid':False})
+
+def run():
+    while True:
+        response = input("Please select one of the following options: Enter/Pay/Leave ")
+        
+        if response.lower() == 'enter':
+            parking_deck.takeTicket()
+        elif response.lower() == 'pay':
+            parking_deck.payForParking()
+        elif response.lower() == 'leave':
+            parking_deck.leaveGarage()
+            break
+        else:
+            print("Please select one of the listed options. ")
+
+run()
